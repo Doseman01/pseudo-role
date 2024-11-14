@@ -1,0 +1,15 @@
+---
+# tasks file for nginx
+- name: Ensure Nginx is installed and package cache is updated
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+    update_cache: yes
+
+- name: Copy index.html to Nginx root directory with specified permissions
+  ansible.builtin.copy:
+    src: files/index.html
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: "0644"
